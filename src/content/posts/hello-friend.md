@@ -1,5 +1,5 @@
 ---
-title: 'Hello Friend'
+title: 'We are Particle Bunni'
 description: 'Welcome in demo of the Terminal theme. Please, look around and check whether this is something for you. And if you like it, give it a chance. Anddddd just one more small thing. You can also set **coverImage** for your posts...'
 pubDate: 2022-01-25
 author: 'Radek'
@@ -7,7 +7,7 @@ image: 'https://panr.github.io/hugo-theme-terminal-demo/posts/hello/cover.jpg'
 tags: []
 ---
 
-Welcome in demo of the `Terminal` theme. Please, look around and check whether this is something for you. And if you like it, give it a chance.
+Welcome to our internet presence. Please, look around and check out our recent news and live performance information. 
 
 Also, if you start a blog, remember about this quote:
 
