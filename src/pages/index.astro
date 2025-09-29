@@ -8,22 +8,19 @@ const posts = (await getCollection('posts'))
   .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<BaseLayout title="Terminal">
+<BaseLayout title="'Particle Bunni'">
   <div class="index-content framed">
-    <h1 id="We are Particle Bunni">Hello there!</h1>
+    <h1 id="We are Particle Bunni">We are Particle Bunni</h1>
     <p>Welcome to our home on the internet! Check out our news, and live performance information.</p>
-    <p>
-      You can customise the colour scheme using panr's <a href="https://panr.github.io/terminal-css/"><strong>Terminal.css</strong></a> 
-      generator - all generated schemes are fully compatible with this theme.
-    </p>
-    <p>
-      <a href="https://panr.github.io/terminal-css/">
-        <img src="https://panr.github.io/hugo-theme-terminal-demo/img/terminal-css.png" alt="Terminal.css Preview" />
-      </a>
-    </p>
+
+    <img src="/particle-bunni-banner-1.png" alt="Particle Bunni Banner" style="max-width: 100%; height: auto;" />
   </div>
   
   <div class="posts">
-    {posts.map((post) => <PostCard post={post} />)}
+    {posts.slice(0, 6).map((post) => <PostCard post={post} />)}
+  </div>
+
+  <div class="see-all">
+    <a href="/posts/">See all posts →</a>
   </div>
 </BaseLayout>
