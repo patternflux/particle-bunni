@@ -1,13 +1,13 @@
 ---
 title: 'We are Particle Bunni'
-description: 'Welcome in demo of the Terminal theme. Please, look around and check whether this is something for you. And if you like it, give it a chance. Anddddd just one more small thing. You can also set **coverImage** for your posts...'
+description: 'Inspired by ritual sound practices, particle physics, and post-industrial dreamscapes, Particle Bunni transforms stillness into signal — silence into texture.'
 pubDate: 2022-01-25
 author: 'Radek'
 image: 'https://panr.github.io/hugo-theme-terminal-demo/posts/hello/cover.jpg'
 tags: []
 ---
 
-Welcome to our internet presence. Please, look around and check out our recent news and live performance information. 
+Inspired by ritual sound practices, particle physics, and post-industrial dreamscapes, Particle Bunni transforms stillness into signal — silence into texture.
 
 Also, if you start a blog, remember about this quote:
 
