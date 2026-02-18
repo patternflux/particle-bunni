@@ -11,7 +11,7 @@ draft: false
 
 ## Introducing Organic Forms & Sonic Shapes
 
-<iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/soundcloud%253Aplaylists%253A2150351012&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/particle-bunni-260133294" title="particle bunni" target="_blank" style="color: #cccccc; text-decoration: none;">particle bunni</a> · <a href="https://soundcloud.com/particle-bunni-260133294/sets/organic-forms-sonic-shapes-vol-1" title="Organic Forms &amp; Sonic Shapes Vol. 1" target="_blank" style="color: #cccccc; text-decoration: none;">Organic Forms &amp; Sonic Shapes Vol. 1</a></div>
+<iframe style="border: 0; width: 700px; height: 820px;" src="https://bandcamp.com/EmbeddedPlayer/album=3854196186/size=large/bgcol=ffffff/linkcol=0687f5/tracklist=false/transparent=true/" seamless><a href="https://particlebunni.bandcamp.com/album/organic-forms-sonic-shapes-vol-1">Organic Forms &amp; Sonic Shapes Vol. 1 by Particle Bunni</a></iframe>
 
 We’ve been building this project in the quiet hours—late nights, early mornings, little pockets of time where sound felt like the right thing to follow. Particle Bunni started as a place for experiments, a space to explore textures, motion, and the odd shapes that come out of letting instinct lead.
 
