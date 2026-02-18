@@ -1,0 +1,50 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'news'> | CollectionEntry<'releases'>;
+  next?: CollectionEntry<'news'> | CollectionEntry<'releases'> | null;
+  prev?: CollectionEntry<'news'> | CollectionEntry<'releases'> | null;
+  baseSlug?: string;
+}
+
+const { entry, next, prev, baseSlug } = Astro.props;
+const { Content } = await entry.render();
+
+const { title, description, thumbnail, image } = entry.data;
+const visual = thumbnail || image;
+---
+
+<Layout title={title} description={description}>
+  <article class={`post-content ${visual ? '' : 'no-image'}`}>
+    {description && <p class="post-content-excerpt">{description}</p>}
+
+    {visual && (
+      <div class="post-content-image">
+        <img src={visual} class="kg-image" alt={title} />
+      </div>
+    )}
+
+    <div class="post-content-body">
+      <Content />
+    </div>
+
+    <div class="post-link">
+      <div>
+        {next && (
+          <a style="display:flex;align-items:center;color:var(--color-base);font-size:2rem;" href={`/${baseSlug}/${next.slug}`}>
+            <span>&larr; {next.data.title}</span>
+          </a>
+        )}
+      </div>
+      <div>
+        {prev && (
+          <a style="display:flex;align-items:center;color:var(--color-base);font-size:2rem;" href={`/${baseSlug}/${prev.slug}`}>
+            <span>{prev.data.title} &rarr;</span>
+          </a>
+        )}
+      </div>
+    </div>
+  </article>
+</Layout>

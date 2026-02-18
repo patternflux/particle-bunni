@@ -1,0 +1,27 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+}
+
+const { entry } = Astro.props;
+const { Content } = await entry.render();
+const { title, description, thumbnail, image } = entry.data;
+const visual = thumbnail || image;
+---
+
+<Layout title={title} description={description}>
+  <article class="contact-form page-template">
+    {visual && (
+      <div class="post-content-image">
+        <img src={visual} class="kg-image" alt={title} />
+      </div>
+    )}
+
+    <div class="post-content-body">
+      <Content />
+    </div>
+  </article>
+</Layout>

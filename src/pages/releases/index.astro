@@ -1,0 +1,8 @@
+---
+import { getEntry } from 'astro:content';
+import PageTemplate from '../../templates/Page.astro';
+
+const entry = await getEntry('pages', 'releases');
+---
+
+<PageTemplate entry={entry} />

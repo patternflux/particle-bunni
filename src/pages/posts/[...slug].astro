@@ -1,49 +1,26 @@
 ---
 import { getCollection } from 'astro:content';
-import PostLayout from '../../layouts/PostLayout.astro';
+import WorkTemplate from '../../templates/Work.astro';
 
 export async function getStaticPaths() {
-  const posts = (await getCollection('posts'))
-    .filter(post => !post.data.draft)
-    .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-  
-  return posts.map((post, index) => ({
-    params: { slug: post.slug },
-    props: {
-      post,
-      prevPost: index < posts.length - 1 ? posts[index + 1] : null,
-      nextPost: index > 0 ? posts[index - 1] : null,
-    },
-  }));
+  const news = (await getCollection('news')).filter((entry) => !entry.data.draft);
+  const releases = (await getCollection('releases')).filter((entry) => !entry.data.draft);
+  const seenSlugs = new Set<string>();
+
+  const newsPaths = news.map((entry) => {
+    seenSlugs.add(entry.slug);
+    return { params: { slug: entry.slug }, props: { entry, baseSlug: 'news' } };
+  });
+
+  // Keep legacy /posts/[slug] deterministic: news wins on slug conflicts.
+  const releasePaths = releases
+    .filter((entry) => !seenSlugs.has(entry.slug))
+    .map((entry) => ({ params: { slug: entry.slug }, props: { entry, baseSlug: 'releases' } }));
+
+  return [...newsPaths, ...releasePaths];
 }
 
-const { post, prevPost, nextPost } = Astro.props;
-const { Content } = await post.render();
-const base = import.meta.env.BASE_URL.endsWith('/') ? import.meta.env.BASE_URL : import.meta.env.BASE_URL + '/';
+const { entry, baseSlug } = Astro.props;
 ---
 
-<PostLayout {...post.data}>
-  <Content />
-  
-  <div class="pagination">
-    <div class="pagination__title">
-      <span class="pagination__title-h">Read other posts</span>
-      <hr />
-    </div>
-    <div class="pagination__buttons">
-      {prevPost && (
-        <>
-          <a href={`${base}posts/${prevPost.slug}/`} class="button inline prev">
-            &lt; [<span class="button__text">{prevPost.data.title}</span>]
-          </a>
-          {prevPost && nextPost && <span>::</span>}
-        </>
-      )}
-      {nextPost && (
-        <a href={`${base}posts/${nextPost.slug}/`} class="button inline next">
-          [<span class="button__text">{nextPost.data.title}</span>] &gt;
-        </a>
-      )}
-    </div>
-  </div>
-</PostLayout>
+<WorkTemplate entry={entry} baseSlug={baseSlug} />

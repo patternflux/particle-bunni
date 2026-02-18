@@ -1,0 +1,8 @@
+---
+import { getEntry } from 'astro:content';
+import ContactTemplate from '../templates/Contact.astro';
+
+const entry = await getEntry('pages', 'contact');
+---
+
+<ContactTemplate entry={entry} />

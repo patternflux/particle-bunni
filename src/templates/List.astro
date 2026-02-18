@@ -1,0 +1,46 @@
+---
+import Layout from '../layouts/Layout.astro';
+import PostCard from '../components/PostCard.astro';
+import { type CollectionEntry } from 'astro:content';
+
+interface Props {
+  entry: CollectionEntry<'pages'>;
+  items?: Array<CollectionEntry<'news'> | CollectionEntry<'releases'>>;
+  baseSlug?: string;
+  compactHeading?: boolean;
+}
+
+const { entry, items = [], baseSlug, compactHeading = false } = Astro.props;
+const { title, description } = entry.data;
+
+let postCounter = 0;
+---
+
+<Layout title={title} description={description}>
+  {description && (
+    <header class={`page-head ${compactHeading ? 'collection-head--compact' : ''}`}>
+      <h2 class="page-head-title">{description}</h2>
+    </header>
+  )}
+
+  <div class="post-feed">
+    {items.map((post) => {
+      postCounter++;
+      return <PostCard count={postCounter} post={post} slug={baseSlug ? `${baseSlug}/${post.slug}` : post.slug} />;
+    })}
+  </div>
+</Layout>
+
+<style>
+  .collection-head--compact {
+    margin-top: 0;
+    padding: 8px 0 16px;
+    max-width: 100%;
+  }
+
+  .collection-head--compact .page-head-title {
+    font-size: clamp(2rem, 2.6vw, 3.2rem);
+    line-height: 1.15;
+  }
+
+</style>

@@ -1,26 +1,62 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import PostCard from '../components/PostCard.astro';
-import { getCollection } from 'astro:content';
+import { getCollection, getEntry } from 'astro:content';
 
-const posts = (await getCollection('posts'))
-  .filter(post => !post.data.draft)
-  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const homePage = await getEntry('pages', 'home');
+const { Content: HomeContent } = homePage ? await homePage.render() : { Content: null };
+
+const newsItems = (await getCollection('news'))
+  .filter((item) => !item.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate || b.data.date || 0).getTime() - new Date(a.data.pubDate || a.data.date || 0).getTime())
+  .slice(0, 6);
+let cardCount = 0;
 ---
 
-<BaseLayout title="'Particle Bunni'">
-  <div class="index-content framed">
-    <h1 id="We are Particle Bunni">We are Particle Bunni</h1>
-    <p>Inspired by ritual sound practices, particle physics, and post-industrial dreamscapes, Particle Bunni transforms stillness into signal — silence into texture.</p>
+<Layout title="Particle Bunni" description={homePage?.data.description}>
+  <article class="post-content page-template no-image home-intro">
+    <div class="post-content-body">
+      {HomeContent ? <HomeContent /> : <p>Particle Bunni shapes stillness into signal.</p>}
+    </div>
+  </article>
 
-    <img src="/banner-1.png" alt="Particle Bunni Banner" style="max-width: 100%; height: auto;" />
-  </div>
-  
-  <div class="posts">
-    {posts.slice(0, 6).map((post) => <PostCard post={post} />)}
-  </div>
+  <header class="page-head home-head">
+    <h2 class="page-head-title">Latest News</h2>
+  </header>
 
-  <div class="see-all">
-    <a href="/posts/">See all posts →</a>
+  <div class="post-feed">
+    {newsItems.map((item) => {
+      cardCount++;
+      return <PostCard count={cardCount} post={item} slug={`news/${item.slug}`} />;
+    })}
   </div>
-</BaseLayout>
+</Layout>
+
+<style>
+  .home-intro {
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+    margin-bottom: 0;
+  }
+
+  .home-intro .post-content-body > p:first-child {
+    margin-top: 0;
+  }
+
+  .home-intro .post-content-body > p:last-child {
+    margin-bottom: 0;
+  }
+
+  .home-head {
+    margin-top: 65px;
+    padding: 0 0 1vw;
+    max-width: 100%;
+  }
+
+  .home-head .page-head-title {
+    margin: 0;
+    font-size: clamp(2rem, 4vw, 3.2rem);
+  }
+
+</style>

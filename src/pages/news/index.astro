@@ -1,0 +1,11 @@
+---
+import { getCollection, getEntry } from 'astro:content';
+import List from '../../templates/List.astro';
+
+const entry = await getEntry('pages', 'news');
+const items = (await getCollection('news'))
+  .filter((post) => !post.data.draft)
+  .sort((a, b) => new Date(b.data.pubDate || b.data.date || 0).getTime() - new Date(a.data.pubDate || a.data.date || 0).getTime());
+---
+
+<List entry={entry} items={items} baseSlug="news" compactHeading={true} />
