@@ -18,7 +18,9 @@ const visual = thumbnail || image;
 
 <Layout title={title} description={description}>
   <article class={`post-content ${visual ? '' : 'no-image'}`}>
-    {description && <p class="post-content-excerpt">{description}</p>}
+    <header class="post-content-header">
+      <h1 class="post-content-title">{title}</h1>
+    </header>
 
     {visual && (
       <div class="post-content-image">
