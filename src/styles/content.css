@@ -190,6 +190,19 @@ production stylesheet in assets/built/screen.css using gulp dev
   color: var(--color-base);
 }
 
+[data-theme='dark'] .post-content-body h1,
+[data-theme='dark'] .post-content-body h2,
+[data-theme='dark'] .post-content-body h3,
+[data-theme='dark'] .post-content-body h4,
+[data-theme='dark'] .post-content-body h5,
+[data-theme='dark'] .post-content-body h6 {
+  color: #e0e0e0 !important;
+}
+
+[data-theme='dark'] .post-content-title {
+  color: #e0e0e0 !important;
+}
+
 .post-content-body li {
   word-break: break-word;
 }
